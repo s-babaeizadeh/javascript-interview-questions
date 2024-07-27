@@ -1,17 +1,21 @@
-// Convert Array to Object in Javascript
+// Question6: Return total marks for students with marks greater than 60
+//after 20 marks have been added to those who scored less than 60
 
-const names = ["Charles", "Mateus", "Simon"];
+let students = [
+  { name: "John", rollNumber: 31, marks: 80 },
+  { name: "Jany", rollNumber: 15, marks: 69 },
+  { name: "Max", rollNumber: 16, marks: 35 },
+  { name: "Robert", rollNumber: 7, marks: 55 },
+];
 
-//Using Object.assign()
-let obj = Object.assign({}, names);
-console.log("obj", obj);
+const totalMarks = students
+  .map((item) => {
+    if (item.marks < 60) {
+      item.marks += 20;
+    }
+    return item;
+  })
+  .filter((item) => item.marks > 60)
+  .reduce((acc, curr) => acc + curr.marks, 0);
 
-//using spread operator
-let obj1 = { ...names };
-console.log("obj1", obj1);
-
-// Using reduce method
-let obj2 = names.reduce((a, val, i) => {
-  return { ...a, [i]: val };
-}, {});
-console.log("obj2", obj2);
+console.log(totalMarks);
